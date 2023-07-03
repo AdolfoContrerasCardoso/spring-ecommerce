@@ -26,7 +26,8 @@ import com.curso.ecommerce.service.UsuarioServiceImpl;*/
 @Controller
 @RequestMapping("/productos")
 public class ProductoController {
-private final Logger LOGGER = LoggerFactory.getLogger(ProductoController.class);
+
+	private final Logger LOGGER = LoggerFactory.getLogger(ProductoController.class);
 	
 	@Autowired
 	private ProductoService productoService;
@@ -37,12 +38,20 @@ private final Logger LOGGER = LoggerFactory.getLogger(ProductoController.class);
 		//model.addAttribute("productos", productoService.findAll());
 		return "productos/show";
 	}
-	/*
+	
 	@GetMapping("/create")
 	public String create() {
 		return "productos/create";
 	}
-	
+	@PostMapping("/save")
+	public String save(Producto producto) {
+		LOGGER.info("Este es el objeto del producto{}", producto);
+		Usuario usuario = new Usuario(1,"","","","","","","");
+		producto.setUsuario(usuario);
+		productoService.save(producto);
+		return "redirect:/productos";
+	}
+	/*
 	@PostMapping("/save")
 	public String save(Producto producto, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
 		LOGGER.info("Este es el objeto producto {}",producto);
@@ -62,7 +71,7 @@ private final Logger LOGGER = LoggerFactory.getLogger(ProductoController.class);
 		productoService.save(producto);
 		return "redirect:/productos";
 	}
-	
+	/*
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable Integer id, Model model) {
 		Producto producto= new Producto();
