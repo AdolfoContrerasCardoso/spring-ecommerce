@@ -34,8 +34,8 @@ public class ProductoController {
 	
 	
 	@GetMapping("")
-	public String show() {
-		//model.addAttribute("productos", productoService.findAll());
+	public String show(Model model) {
+		model.addAttribute("productos", productoService.findAll());
 		return "productos/show";
 	}
 	
